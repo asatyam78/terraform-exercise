@@ -12,20 +12,20 @@ resource "azurerm_network_security_group" "bastion_subnet_nsg" {
 }
 
 resource "azurerm_subnet_network_security_group_association" "bastion_subnet_nsg_associate" {
-    depends_on = [
-      azurerm_network_security_rule.bastion_nsg_rule_inbound
-    ]
+  depends_on = [
+    azurerm_network_security_rule.bastion_nsg_rule_inbound
+  ]
   subnet_id                 = azurerm_subnet.bastionsubnet.id
   network_security_group_id = azurerm_network_security_group.bastion_subnet_nsg.id
 }
 
 locals {
   bastion_inbound_port = {
-  "110":"22"
+    "110" : "22"
   }
 }
 resource "azurerm_network_security_rule" "bastion_nsg_rule_inbound" {
-  for_each = local.web_inbound_port
+  for_each                    = local.web_inbound_port
   name                        = "Rule-Port-${each.value}"
   priority                    = each.key
   direction                   = "Inbound"

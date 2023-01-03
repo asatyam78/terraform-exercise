@@ -12,23 +12,23 @@ resource "azurerm_network_security_group" "app_subnet_nsg" {
 }
 
 resource "azurerm_subnet_network_security_group_association" "app_subnet_nsg_associate" {
-    depends_on = [
-      azurerm_network_security_rule.app_nsg_rule_inbound
-    ]
+  depends_on = [
+    azurerm_network_security_rule.app_nsg_rule_inbound
+  ]
   subnet_id                 = azurerm_subnet.appsubnet.id
   network_security_group_id = azurerm_network_security_group.app_subnet_nsg.id
 }
 
 locals {
   app_inbound_port = {
-  "110":"80",
-  "120":"443",
-  "130": "8080"
+    "110" : "80",
+    "120" : "443",
+    "130" : "8080"
   }
 }
 
 resource "azurerm_network_security_rule" "app_nsg_rule_inbound" {
-  for_each = local.app_inbound_port
+  for_each                    = local.app_inbound_port
   name                        = "Rule-Port-${each.value}"
   priority                    = each.key
   direction                   = "Inbound"

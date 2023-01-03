@@ -3,19 +3,19 @@ resource "azurerm_public_ip" "bastion_host_public_ip" {
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   allocation_method   = "Static"
-  sku = "Standard"
+  sku                 = "Standard"
 }
 
 resource "azurerm_network_interface" "bastion_linuxvm_nic" {
-   name                = "${var.web_subnet_name}-bastion-linuxvm-nic"
+  name                = "${var.web_subnet_name}-bastion-linuxvm-nic"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
   ip_configuration {
     name                          = "internal"
-    subnet_id                     = azurerm_subnet.websubnet.id 
+    subnet_id                     = azurerm_subnet.websubnet.id
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id = azurerm_public_ip.bastion_host_public_ip.id
+    public_ip_address_id          = azurerm_public_ip.bastion_host_public_ip.id
   }
 }
 
@@ -24,8 +24,8 @@ resource "azurerm_linux_virtual_machine" "bastion_host_linuxvm" {
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
-  size                = "Standard_B1s"
-  admin_username      = "azureuser"
+  size           = "Standard_B1s"
+  admin_username = "azureuser"
   network_interface_ids = [
     azurerm_network_interface.bastion_linuxvm_nic.id,
   ]

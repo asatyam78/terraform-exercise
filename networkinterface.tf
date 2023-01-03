@@ -5,7 +5,7 @@ resource "azurerm_network_interface" "app_linuxvm_nic" {
 
   ip_configuration {
     name                          = "internal"
-    subnet_id                     = azurerm_subnet.websubnet.id 
+    subnet_id                     = azurerm_subnet.websubnet.id
     private_ip_address_allocation = "Dynamic"
   }
 }
@@ -17,7 +17,7 @@ resource "azurerm_network_interface" "app_linuxvm_nic" {
 
   ip_configuration {
     name                          = "internal"
-    subnet_id                     = azurerm_subnet.appsubnet.id 
+    subnet_id                     = azurerm_subnet.appsubnet.id
     private_ip_address_allocation = "Dynamic"
   }
 }

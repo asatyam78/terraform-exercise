@@ -1,20 +1,20 @@
 variable "business_division" {
   description = "Business Division "
-  type = string
-  default = "hr"
+  type        = string
+  default     = "hr"
 }
 
 variable "environment" {
-  type = string
+  type    = string
   default = "dev"
 }
 
 variable "resource_group" {
-  type = string 
+  type    = string
   default = "rg"
 }
 
 variable "resource_group_location" {
-  type = string 
+  type    = string
   default = "eastus"
 }
