@@ -10,7 +10,6 @@ terraform {
     null = {
       source = "hashicorp/null"
     }
-
   }
 }
 

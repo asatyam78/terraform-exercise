@@ -1,7 +1,7 @@
 variable "business_division" {
   description = "Business Division "
   type        = string
-  default     = "hr"
+  default     = "test"
 }
 
 variable "environment" {
